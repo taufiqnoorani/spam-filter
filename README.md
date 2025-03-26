@@ -91,7 +91,7 @@ If a word has never appeared in spam messages, then its probability becomes 0, m
 ## Implementation
 
 ### 1. Data Preparation
-The dataset used for training the Naive Bayes classifier is stored in a CSV file (`spam.csv`). It contains labeled messages categorized as either `spam` or        `ham` (not spam). The dataset is loaded using Pandas and preprocessed as follows:
+The dataset used for training the Naive Bayes classifier is [SMS Spam Collection Dataset](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset). It contains a CSV file (`spam.csv`) with labeled messages categorized as either `spam` or        `ham` (not spam). The dataset is loaded using Pandas and preprocessed as follows:
 
 - The `label` column is renamed to `is_spam`, and values are mapped to `True` for spam and `False` for ham.  
   (Originally, the columns were named `v1` and `v2`, which were manually changed to `label` and `message`)
