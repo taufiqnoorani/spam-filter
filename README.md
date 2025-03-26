@@ -93,7 +93,22 @@ If a word has never appeared in spam messages, then its probability becomes 0, m
 ### 1. Data Preparation
 The dataset used for training the Naive Bayes classifier is stored in a CSV file (`spam.csv`). It contains labeled messages categorized as either `spam` or        `ham` (not spam). The dataset is loaded using Pandas and preprocessed as follows:
 
-- The `label` column is renamed to `is_spam`, and values are mapped to `True` for spam and `False` for ham.
+- The `label` column is renamed to `is_spam`, and values are mapped to `True` for spam and `False` for ham.  
+  (Originally, the columns were named `v1` and `v2`, which were manually changed to `label` and `message`)
+    
+  ```python
+  csv_path = "spam.csv"
+  dataFrame = pd.read_csv("csv_path", encoding = "latin1",)["label", "messages"]
+  dataFrame.rename(columns = {"label": is_spam, message: "text"}, inplace = True)
+  ```
+  or
+  
+  ```python
+  csv_path = "spam.csv"
+  dataFrame = pd.read_csv("csv_path", encoding = "latin1",)["v1", "v2"]
+  dataFrame.rename(columns = {"v1": is_spam, v2: "text"}, inplace = True)
+  ```
+  
 - The `message` column is retained as the text data.
 - The dataset is converted into a list of `Message` named tuples for easy manipulation.  
 
@@ -135,8 +150,13 @@ The dataset used for training the Naive Bayes classifier is stored in a CSV file
 
 
 ### 8. Running the Model on Real Data
-- After training, the classifier is used to predict whether new messages are spam or ham.  
-
+- After training, the classifier is used to predict whether new messages are spam or ham.
+  
+  <img width="1525" alt="spam" src="https://github.com/user-attachments/assets/cc339aec-8374-45cc-8d53-a95587c92f6c" />  
+- 99% sounds too good to be true and there's certainly a smell of overfitting in the air. The data set we've used for training is small.
+  
+  <img width="1525" alt="ham" src="https://github.com/user-attachments/assets/d8c406ca-6a78-4ed1-8b61-348c4ebf496d" />  
+- You might want to modify the code to train on the larger messages or find a different data set altogether.
 
 This implementation ensures the classifier is trained efficiently and performs well on predicting spam messages using Naive Bayes principles.
 
